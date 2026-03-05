@@ -1,0 +1,25 @@
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.trip-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.trip-form button {
+  padding: 8px;
+  background-color: #2b7cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.trip-form button:hover {
+  background-color: #1f5fd1;
+}
