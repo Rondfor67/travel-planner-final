@@ -1,4 +1,4 @@
-import axios from "axios"
+import { API_URL } from "../config"
 import "./TripList.css"
 export default function TripList({ trips, fetchTrips }) {
 
@@ -10,7 +10,7 @@ export default function TripList({ trips, fetchTrips }) {
       return
     }
   
-    await axios.delete(`http://localhost:5000/api/trips/${id}`)
+    await axios.delete(`${API_URL}/trips/${id}`)
   
     fetchTrips()
   }
@@ -25,7 +25,7 @@ export default function TripList({ trips, fetchTrips }) {
       return
     }
   
-    await axios.put(`http://localhost:5000/api/trips/${trip._id}`, {
+    await axios.put(`${API_URL}/trips/${trip._id}`, {
       ...trip,
       destination: newDestination,
       budget: newBudget,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import { API_URL } from "../config"
 
 import "./Dashboard.css"
 import TripForm from "../components/TripForm"
@@ -14,13 +14,13 @@ export default function Dashboard() {
     const token = localStorage.getItem("token")
 
     const res = await axios.get(
-      "http://localhost:5000/api/trips",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    )
+  `${API_URL}/trips`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
     setTrips(res.data)
   }

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import { API_URL } from "../config"
 import "./TripForm.css"
 
 export default function TripForm({ fetchTrips }) {
@@ -24,7 +24,7 @@ export default function TripForm({ fetchTrips }) {
     const token = localStorage.getItem("token")
 
   await axios.post(
-    "http://localhost:5000/api/trips",
+  `${API_URL}/trips`,
     newTrip,
     {
       headers: {
