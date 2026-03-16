@@ -1,5 +1,6 @@
 import { API_URL } from "../config"
 import "./TripList.css"
+import axios from "axios"
 export default function TripList({ trips, fetchTrips }) {
 
   const deleteTrip = async (id) => {

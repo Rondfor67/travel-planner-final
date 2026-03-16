@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { API_URL } from "../config"
+import axios from "axios"
 
 import "./Dashboard.css"
 import TripForm from "../components/TripForm"
