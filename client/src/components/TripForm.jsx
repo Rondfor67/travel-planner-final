@@ -21,7 +21,17 @@ export default function TripForm({ fetchTrips }) {
         user: "123456789012345678901234"
     }
 
-    await axios.post("http://localhost:5000/api/trips", newTrip)
+    const token = localStorage.getItem("token")
+
+  await axios.post(
+    "http://localhost:5000/api/trips",
+    newTrip,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
 
     setDestination("")
     setBudget("")

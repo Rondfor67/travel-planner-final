@@ -3,25 +3,37 @@ import "./TripList.css"
 export default function TripList({ trips, fetchTrips }) {
 
   const deleteTrip = async (id) => {
+
+    const confirmDelete = window.confirm("Delete this trip?")
+  
+    if (!confirmDelete) {
+      return
+    }
+  
     await axios.delete(`http://localhost:5000/api/trips/${id}`)
+  
     fetchTrips()
   }
 
-const editTrip = async (trip) => {
+  const editTrip = async (trip) => {
 
-  const newDestination = prompt("Destination:", trip.destination)
-  const newBudget = prompt("Budget:", trip.budget)
-  const newPlaces = prompt("Places to visit:", trip.placesToVisit)
-
-  await axios.put(`http://localhost:5000/api/trips/${trip._id}`, {
-    ...trip,
-    destination: newDestination,
-    budget: newBudget,
-    placesToVisit: newPlaces
-  })
-
-  fetchTrips()
-}
+    const newDestination = prompt("Destination:", trip.destination)
+    const newBudget = prompt("Budget:", trip.budget)
+    const newPlaces = prompt("Places to visit:", trip.placesToVisit)
+  
+    if (newDestination === null || newBudget === null || newPlaces === null) {
+      return
+    }
+  
+    await axios.put(`http://localhost:5000/api/trips/${trip._id}`, {
+      ...trip,
+      destination: newDestination,
+      budget: newBudget,
+      placesToVisit: newPlaces
+    })
+  
+    fetchTrips()
+  }
 
   return (
     <div>

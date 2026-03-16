@@ -10,7 +10,18 @@ export default function Dashboard() {
   const [trips, setTrips] = useState([])
 
   const fetchTrips = async () => {
-    const res = await axios.get("http://localhost:5000/api/trips")
+
+    const token = localStorage.getItem("token")
+
+    const res = await axios.get(
+      "http://localhost:5000/api/trips",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
     setTrips(res.data)
   }
 

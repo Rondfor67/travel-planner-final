@@ -2,17 +2,21 @@ const express = require("express")
 const router = express.Router()
 
 const Trip = require("../models/Trip")
+const authMiddleware = require("../middleware/authMiddleware")
 //get all
-router.get("/", async (req, res) => {
-  const trips = await Trip.find()
-  res.json(trips)
+router.get("/", authMiddleware, async (req, res) => {
+  const trips = await Trip.find({ user: req.user.id });
+  res.json(trips);
 })
 
 //post(create)trip
-router.post("/", async (req, res) => {
-  const newTrip = new Trip(req.body)
-  const savedTrip = await newTrip.save()
-  res.json(savedTrip)
+router.post("/", authMiddleware, async (req, res) => {
+  const trip = new Trip({
+    ...req.body,
+    user: req.user.id
+  });
+  await trip.save();
+  res.json(trip);
 })
 
 //put(update)trip
