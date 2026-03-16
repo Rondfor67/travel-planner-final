@@ -14,7 +14,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token")
 
     const res = await axios.get(
-  `${API_URL}/trips`,
+    `${API_URL}/trips`,
   {
     headers: {
       Authorization: `Bearer ${token}`
